@@ -24,7 +24,7 @@ class _MyAppState extends State<MyApp> {
       routes: {
         '/login': (context) => Login(),
         '/register': (context) => Register(),
-        '/recovery_password':(context) => PasswordRecovery(),
+        '/password_recovery':(context) => PasswordRecovery(),
       },
     );
   }

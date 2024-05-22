@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:login_register/Screens/login.dart';
 
 class Register extends StatefulWidget {
   const Register({super.key});
@@ -125,280 +126,296 @@ class _RegisterState extends State<Register> {
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
-      // resizeToAvoidBottomInset: false,
-      body: Container(
-        decoration: const BoxDecoration(
-          gradient: RadialGradient(
-            center: Alignment.center ,
-
-            colors: [
-              Color(0xFF1b2735), //
-              Color(0xFF12141d), //   
-            ],
-          ),
-        ),
-        child: Center(
-          child: IntrinsicHeight(
-            child: Container(
-              padding: EdgeInsets.all(20),
-              width: 500, 
-              constraints: BoxConstraints(
-                maxWidth: MediaQuery.of(context).size.width*0.9,
-              ),
-              decoration: BoxDecoration(
-                color: Color(0xFF2B2E38),
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Column(
-                children: [
-                  Text("Register",style: TextStyle(color: Color(0xFFffeba7),fontSize: 30),),
-                  SizedBox(height:30,),
-                  TextField(
-                    cursorColor:Color.fromARGB(255, 253, 253, 247) ,
-                    keyboardType: TextInputType.name,
-                    style: TextStyle(color:Color.fromARGB(255, 253, 253, 247) ),
-                    controller: _usernameCtrl,
-                    decoration: InputDecoration(
-                      contentPadding:EdgeInsets.fromLTRB(10, 0, 10, 0) ,
-                      prefixIcon: Icon(Icons.account_circle_outlined,color: Color(0xFFffeba7),),
-                      labelText: "username",
-                      labelStyle: TextStyle(color: Color.fromARGB(255, 162, 162, 160),fontSize: 15),
-                      filled: true,
-                      fillColor: Color(0xff1f2029),
-                      enabledBorder: UnderlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(10)),
-                        borderSide: BorderSide(color: Color.fromARGB(255, 208, 196, 20), width: 1),
-                      ),
-                      
-                      focusedBorder: OutlineInputBorder(
-                        gapPadding: 5,
-                        borderRadius: BorderRadius.circular(10),
-                        borderSide: BorderSide(color: Color.fromARGB(255, 208, 196, 20),width:1)
-                      ),
-                      disabledBorder: InputBorder.none,
-                      focusColor: Colors.red,
-                      helperMaxLines: 2,
-                      counterText: ""
-                    ),
-                    onChanged: (value) {
-                      validateUserName(value);
-                    },
-                    maxLength: 20,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(5,5,5,0),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text.rich(
-                          TextSpan(
-                          children: <TextSpan>[
-                            TextSpan(
-                              text: userNameValidatonMsgPrefix[0]+userNameVAlidationMsg[0]+'\n',
-                              style: TextStyle(
-                                color: userNameValidatonMsgColor[0],
-                                fontSize: 10
-                              ),
-                            ),
-                            TextSpan(
-                              text: userNameValidatonMsgPrefix[1]+userNameVAlidationMsg[1],
-                              style: TextStyle(
-                                color: userNameValidatonMsgColor[1],
-                                fontSize: 10
-                              ),
-                            ),
-                          ],
-                        ),),
-                        Text("${_usernameCtrl.text.length}/20",style: TextStyle(
-                          color: Color.fromARGB(255, 162, 162, 160),
-                          fontSize: 10
-                        ),),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 15 ,),
-
-
-
-                  TextField(
-                    cursorColor:Color.fromARGB(255, 253, 253, 247) ,
-                    keyboardType: TextInputType.name,
-                    style: TextStyle(color:Color.fromARGB(255, 253, 253, 247) ),
-                    controller: _emailCtrl,
-                    decoration: InputDecoration(
-                      contentPadding:EdgeInsets.fromLTRB(10, 0, 10, 0) ,
-                      prefixIcon: Icon(Icons.mail,color: Color(0xFFffeba7),),
-                      labelText: "email", 
-                      labelStyle: TextStyle(color: Color.fromARGB(255, 162, 162, 160),fontSize: 15),
-                      filled: true,
-                      fillColor: Color(0xff1f2029),
-                      enabledBorder: UnderlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(10)),
-                        borderSide: BorderSide(color: Color.fromARGB(255, 208, 196, 20), width: 1),
-                      ),
-                      
-                      focusedBorder: OutlineInputBorder(
-                        gapPadding: 5,
-                        borderRadius: BorderRadius.circular(10),
-                        borderSide: BorderSide(color: Color.fromARGB(255, 208, 196, 20),width:1)
-                      ),
-                      disabledBorder: InputBorder.none,
-                      focusColor: Colors.red,
-                      helperMaxLines: 2,
-                      counterText: ""
-                    ),
-                    onChanged: (value) {
-                      validateEmail(value);
-                    },
-                    maxLength: 30,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(5,5,5,0),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text.rich(
-                          TextSpan(
-                          children: <TextSpan>[
-                            TextSpan(
-                              text: emailValidatonMsgPrefix+emailVAlidationMsg,
-                              style: TextStyle(
-                                color: emailValidatonMsgColor,
-                                fontSize: 10
-                              ),
-                            ),
-                          ],
-                        ),),
-                        Text("${_emailCtrl.text.length}/30",style: TextStyle(
-                          color: Color.fromARGB(255, 162, 162, 160),
-                          fontSize: 10
-                        ),),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 15,),
-
-
-
-
-
-                  TextField(
-                    cursorColor:Color.fromARGB(255, 253, 253, 247) ,
-                    keyboardType: TextInputType.name,
-                    style: TextStyle(color:Color.fromARGB(255, 253, 253, 247) ),
-                    controller: _passwordCtrl,
-                    decoration: InputDecoration(
-                      contentPadding:EdgeInsets.fromLTRB(10, 0, 10, 0) ,
-                      prefixIcon: Icon(Icons.lock,color: Color(0xFFffeba7),),
-                      suffixIcon: IconButton(
-                        onPressed: () {
-                          changePasswordVisibility();
-                        }, 
-                        icon: Icon(_showPassIcon,color: Color(0xFFffeba7)),
-                      ),
-                      labelText: "password",
-                      labelStyle: TextStyle(color: Color.fromARGB(255, 162, 162, 160),fontSize: 15),
-                      filled: true,
-                      fillColor: Color(0xff1f2029),
-                      enabledBorder: UnderlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(10)),
-                        borderSide: BorderSide(color: Color.fromARGB(255, 208, 196, 20), width: 1),
-                      ),
-                      
-                      focusedBorder: OutlineInputBorder(
-                        gapPadding: 5,
-                        borderRadius: BorderRadius.circular(10),
-                        borderSide: BorderSide(color: Color.fromARGB(255, 208, 196, 20),width:1)
-                      ),
-                      disabledBorder: InputBorder.none,
-                      focusColor: Colors.red,
-                      counterText: "",
-                  
-                    ),
-                    obscureText: _showPass,
-                    maxLength: 30,
-                    onChanged: (value) {
-                      validatePassword(value);
-                    },
-                    
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(5,5,5,0),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  
-                      children: [
-                        Text.rich(
-                          TextSpan(
-                          children: <TextSpan>[
-                            TextSpan(
-                              text: passwordValidatonMsgPrefix[0]+passwordVAlidationMsg[0]+'\n',
-                              style: TextStyle(
-                                color: passwordValidatonMsgColor[0],
-                                fontSize: 10
-                              ),
-                            ),
-                            TextSpan(
-                              text: passwordValidatonMsgPrefix[1]+passwordVAlidationMsg[1],
-                              style: TextStyle(
-                                color: passwordValidatonMsgColor[1],
-                                fontSize: 10
-                              ),
-                            ),
-                          ],
-                        ),),
-                        
-                        Text(
-                          "${_passwordCtrl.text.length}/30",style: TextStyle(
-                          color: Color.fromARGB(255, 162, 162, 160),
-                          fontSize: 10
-                        ),),
-                      ],
-                    ),
-                  ),
-                  
-                  
-                  
-                  SizedBox(height: 15,),
-                  ElevatedButton(
-                    onPressed: (){
-                      submit();
-                    }, child: Text("Submit",style: TextStyle(color: Colors.black,fontSize: 20),),
-                    style: ElevatedButton.styleFrom(
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                      backgroundColor: Color(0xFFffeba7),
-                    ),
-                  ),
-                    
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        "Don you have an account?",
-                          style: TextStyle(color: Color(0xffb3b3b3))
-                      ),
-                      TextButton(
-                        onPressed: (){Navigator.pushNamed(context, '/login');}, 
-                        child: Text("Login now",
-                          style: TextStyle(color: Color(0xff30c1c6)),
-                        ),
-                        style: TextButton.styleFrom(
-                          padding: EdgeInsets.all(5)
-                        ),
-                      )
-                    ],
-                  ),
-                  
-                ],
-              ),
+    return  PopScope(
+      canPop: false,
+      onPopInvoked: (didPop) {
+        Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(builder: (context) => Login()),
+          (Route<dynamic> route) => false,
+        );
+      },
+      child: Scaffold(
+        // resizeToAvoidBottomInset: false,
+        body: Container(
+          decoration: const BoxDecoration(
+            gradient: RadialGradient(
+              center: Alignment.center ,
+      
+              colors: [
+                Color(0xFF1b2735), 
+                Color(0xFF12141d),  
+              ],
             ),
-          )
-        ),
-      )
+          ),
+          child: Center(
+            child: IntrinsicHeight(
+              child: Container(
+                padding: EdgeInsets.all(20),
+                width: 500, 
+                constraints: BoxConstraints(
+                  maxWidth: MediaQuery.of(context).size.width*0.9,
+                ),
+                decoration: BoxDecoration(
+                  color: Color(0xFF2B2E38),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Column(
+                  children: [
+                    Text("Register",style: TextStyle(color: Color(0xFFffeba7),fontSize: 30),),
+                    SizedBox(height:30,),
+                    TextField(
+                      cursorColor:Color.fromARGB(255, 253, 253, 247) ,
+                      keyboardType: TextInputType.name,
+                      style: TextStyle(color:Color.fromARGB(255, 253, 253, 247) ),
+                      controller: _usernameCtrl,
+                      decoration: InputDecoration(
+                        contentPadding:EdgeInsets.fromLTRB(10, 0, 10, 0) ,
+                        prefixIcon: Icon(Icons.account_circle_outlined,color: Color(0xFFffeba7),),
+                        labelText: "username",
+                        labelStyle: TextStyle(color: Color.fromARGB(255, 162, 162, 160),fontSize: 15),
+                        filled: true,
+                        fillColor: Color(0xff1f2029),
+                        enabledBorder: UnderlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                          borderSide: BorderSide(color: Color.fromARGB(255, 208, 196, 20), width: 1),
+                        ),
+                        
+                        focusedBorder: OutlineInputBorder(
+                          gapPadding: 5,
+                          borderRadius: BorderRadius.circular(10),
+                          borderSide: BorderSide(color: Color.fromARGB(255, 208, 196, 20),width:1)
+                        ),
+                        disabledBorder: InputBorder.none,
+                        focusColor: Colors.red,
+                        helperMaxLines: 2,
+                        counterText: ""
+                      ),
+                      onChanged: (value) {
+                        validateUserName(value);
+                      },
+                      maxLength: 20,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(5,5,5,0),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text.rich(
+                            TextSpan(
+                            children: <TextSpan>[
+                              TextSpan(
+                                text: userNameValidatonMsgPrefix[0]+userNameVAlidationMsg[0]+'\n',
+                                style: TextStyle(
+                                  color: userNameValidatonMsgColor[0],
+                                  fontSize: 10
+                                ),
+                              ),
+                              TextSpan(
+                                text: userNameValidatonMsgPrefix[1]+userNameVAlidationMsg[1],
+                                style: TextStyle(
+                                  color: userNameValidatonMsgColor[1],
+                                  fontSize: 10
+                                ),
+                              ),
+                            ],
+                          ),),
+                          Text("${_usernameCtrl.text.length}/20",style: TextStyle(
+                            color: Color.fromARGB(255, 162, 162, 160),
+                            fontSize: 10
+                          ),),
+                        ],
+                      ),
+                    ),
+                    SizedBox(height: 15 ,),
+      
+      
+      
+                    TextField(
+                      cursorColor:Color.fromARGB(255, 253, 253, 247) ,
+                      keyboardType: TextInputType.name,
+                      style: TextStyle(color:Color.fromARGB(255, 253, 253, 247) ),
+                      controller: _emailCtrl,
+                      decoration: InputDecoration(
+                        contentPadding:EdgeInsets.fromLTRB(10, 0, 10, 0) ,
+                        prefixIcon: Icon(Icons.mail,color: Color(0xFFffeba7),),
+                        labelText: "email", 
+                        labelStyle: TextStyle(color: Color.fromARGB(255, 162, 162, 160),fontSize: 15),
+                        filled: true,
+                        fillColor: Color(0xff1f2029),
+                        enabledBorder: UnderlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                          borderSide: BorderSide(color: Color.fromARGB(255, 208, 196, 20), width: 1),
+                        ),
+                        
+                        focusedBorder: OutlineInputBorder(
+                          gapPadding: 5,
+                          borderRadius: BorderRadius.circular(10),
+                          borderSide: BorderSide(color: Color.fromARGB(255, 208, 196, 20),width:1)
+                        ),
+                        disabledBorder: InputBorder.none,
+                        focusColor: Colors.red,
+                        helperMaxLines: 2,
+                        counterText: ""
+                      ),
+                      onChanged: (value) {
+                        validateEmail(value);
+                      },
+                      maxLength: 30,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(5,5,5,0),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text.rich(
+                            TextSpan(
+                            children: <TextSpan>[
+                              TextSpan(
+                                text: emailValidatonMsgPrefix+emailVAlidationMsg,
+                                style: TextStyle(
+                                  color: emailValidatonMsgColor,
+                                  fontSize: 10
+                                ),
+                              ),
+                            ],
+                          ),),
+                          Text("${_emailCtrl.text.length}/30",style: TextStyle(
+                            color: Color.fromARGB(255, 162, 162, 160),
+                            fontSize: 10
+                          ),),
+                        ],
+                      ),
+                    ),
+                    SizedBox(height: 15,),
+      
+      
+      
+      
+      
+                    TextField(
+                      cursorColor:Color.fromARGB(255, 253, 253, 247) ,
+                      keyboardType: TextInputType.name,
+                      style: TextStyle(color:Color.fromARGB(255, 253, 253, 247) ),
+                      controller: _passwordCtrl,
+                      decoration: InputDecoration(
+                        contentPadding:EdgeInsets.fromLTRB(10, 0, 10, 0) ,
+                        prefixIcon: Icon(Icons.lock,color: Color(0xFFffeba7),),
+                        suffixIcon: IconButton(
+                          onPressed: () {
+                            changePasswordVisibility();
+                          }, 
+                          icon: Icon(_showPassIcon,color: Color(0xFFffeba7)),
+                        ),
+                        labelText: "password",
+                        labelStyle: TextStyle(color: Color.fromARGB(255, 162, 162, 160),fontSize: 15),
+                        filled: true,
+                        fillColor: Color(0xff1f2029),
+                        enabledBorder: UnderlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                          borderSide: BorderSide(color: Color.fromARGB(255, 208, 196, 20), width: 1),
+                        ),
+                        
+                        focusedBorder: OutlineInputBorder(
+                          gapPadding: 5,
+                          borderRadius: BorderRadius.circular(10),
+                          borderSide: BorderSide(color: Color.fromARGB(255, 208, 196, 20),width:1)
+                        ),
+                        disabledBorder: InputBorder.none,
+                        focusColor: Colors.red,
+                        counterText: "",
+                    
+                      ),
+                      obscureText: _showPass,
+                      maxLength: 30,
+                      onChanged: (value) {
+                        validatePassword(value);
+                      },
+                      
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(5,5,5,0),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    
+                        children: [
+                          Text.rich(
+                            TextSpan(
+                            children: <TextSpan>[
+                              TextSpan(
+                                text: passwordValidatonMsgPrefix[0]+passwordVAlidationMsg[0]+'\n',
+                                style: TextStyle(
+                                  color: passwordValidatonMsgColor[0],
+                                  fontSize: 10
+                                ),
+                              ),
+                              TextSpan(
+                                text: passwordValidatonMsgPrefix[1]+passwordVAlidationMsg[1],
+                                style: TextStyle(
+                                  color: passwordValidatonMsgColor[1],
+                                  fontSize: 10
+                                ),
+                              ),
+                            ],
+                          ),),
+                          
+                          Text(
+                            "${_passwordCtrl.text.length}/30",style: TextStyle(
+                            color: Color.fromARGB(255, 162, 162, 160),
+                            fontSize: 10
+                          ),),
+                        ],
+                      ),
+                    ),
+                    
+                    
+                    
+                    SizedBox(height: 15,),
+                    ElevatedButton(
+                      onPressed: (){
+                        submit();
+                      }, child: Text("Submit",style: TextStyle(color: Colors.black,fontSize: 20),),
+                      style: ElevatedButton.styleFrom(
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                        backgroundColor: Color(0xFFffeba7),
+                      ),
+                    ),
+                      
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Don you have an account?",
+                            style: TextStyle(color: Color(0xffb3b3b3))
+                        ),
+                        TextButton(
+                          onPressed: (){
+                              Navigator.pushAndRemoveUntil(
+                                context,
+                                MaterialPageRoute(builder: (context) => Login()),
+                                (Route<dynamic> route) => false,
+                              );
+                            }, 
+                          child: Text("Login now",
+                            style: TextStyle(color: Color(0xff30c1c6)),
+                          ),
+                          style: TextButton.styleFrom(
+                            padding: EdgeInsets.all(5)
+                          ),
+                        )
+                      ],
+                    ),
+                    
+                  ],
+                ),
+              ),
+            )
+          ),
+        )
+      ),
     );
   }
 }
